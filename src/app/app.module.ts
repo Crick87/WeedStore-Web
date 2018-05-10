@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Services
 import { FirebaseCMService } from './services/firebase-cm.service';
+import { WebAPIService } from './services/web-api.service';
 
 // Routing
 import { APP_ROUTING } from './app.routing';
@@ -14,12 +15,14 @@ import { APP_ROUTING } from './app.routing';
 import { AppComponent } from './app.component';
 import { FcmessagingComponent } from './components/fcmessaging/fcmessaging.component';
 import { TitlebarComponent } from './components/common/titlebar/titlebar.component';
+import { CustomerListComponent } from './components/customer/customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FcmessagingComponent,
-    TitlebarComponent
+    TitlebarComponent,
+    CustomerListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { TitlebarComponent } from './components/common/titlebar/titlebar.compone
     APP_ROUTING
   ],
   providers: [
-    FirebaseCMService
+    FirebaseCMService,
+    WebAPIService
   ],
   bootstrap: [AppComponent]
 })
