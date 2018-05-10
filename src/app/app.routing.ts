@@ -3,7 +3,7 @@ import { FcmessagingComponent } from './components/fcmessaging/fcmessaging.compo
 
 const app_routes: Routes = [
   { path: 'push-notify', component: FcmessagingComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'home' }
+  { path: '**', pathMatch: 'full', redirectTo: 'push-notify' }
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(app_routes);

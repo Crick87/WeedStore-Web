@@ -1,3 +1,44 @@
-<p>
-  fcmessaging works!
-</p>
+<div id="fcmessaging-container" class="slide-in container pt-4 mb-5">
+
+  <div class="card text-center">
+    <div class="card-header">
+      <h2 class="text-center">
+        Notificaciones push
+      </h2>
+    </div>
+    <div class="card-body">
+
+      <form [formGroup]="forma" (ngSubmit)="send()" (keyup.enter)="forma.valid && send()" novalidate>
+
+        <div class="form-group">
+          <div class="floating-label">
+            <label for="title">Título</label>
+            <input aria-describedby="title-help" class="form-control" id="title" placeholder="Titulo del mensaje" type="text"
+            formControlName="title">
+            <small id="title-help" class="form-text text-muted">Escribe el título del mensaje.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="floating-label">
+            <label for="title">Mensaje</label>
+            <input aria-describedby="body-help" class="form-control" id="body" placeholder="Titulo del mensaje" type="text"
+            formControlName="body">
+            <small id="body-help" class="form-text text-muted">Escribe el cuerpo del mensaje.</small>
+          </div>
+        </div>
+
+        <div class="text-center col-12">
+          <button [disabled]="forma.invalid || resButton=='Enviando'" type="submit" class="btn btn-primary">
+            {{ resButton }}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+
+</div>
