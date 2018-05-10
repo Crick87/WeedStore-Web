@@ -1,0 +1,69 @@
+// Theme palette
+// Change these values to customise colour palettes
+
+$primary: (
+  color: $material-color-green-500,
+  dark:  $material-color-green-800,
+  light: $material-color-green-100
+) !default;
+
+$secondary: (
+  color: $material-color-yellow-400,
+  dark:  $material-color-yellow-600,
+  light: $material-color-yellow-100
+) !default;
+
+$danger: (
+  color: $material-color-red-700,
+  dark:  $material-color-red-800,
+  light: $material-color-red-100
+) !default;
+
+$info: (
+  color: $material-color-light-blue-700,
+  dark:  $material-color-light-blue-900,
+  light: $material-color-light-blue-100
+) !default;
+
+$success: (
+  color: $material-color-light-green-500,
+  dark:  $material-color-light-green-700,
+  light: $material-color-light-green-100
+) !default;
+
+$warning: (
+  color: $material-color-orange-500,
+  dark:  $material-color-orange-700,
+  light: $material-color-orange-100
+) !default;
+
+$dark: (
+  color: $material-color-grey-800,
+  dark:  $material-color-grey-900,
+  light: $material-color-grey-600
+) !default;
+
+$light: (
+  color: $material-color-grey-100,
+  dark:  $material-color-grey-300,
+  light: $material-color-grey-050
+) !default;
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    'primary':   $primary,
+    'secondary': $secondary,
+    'danger':    $danger,
+    'info':      $info,
+    'success':   $success,
+    'warning':   $warning,
+    'dark':      $dark,
+    'light':     $light
+  ),
+  $theme-colors
+);
+
+$yiq-contrasted-threshold: 150 !default;
+$yiq-text-dark:            $black-primary !default;
+$yiq-text-light:           $white-primary !default;

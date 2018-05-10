@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+/* IMPORTS */
+// Material styles
+@import 'sass/sass-material/material';
+// Rewriting some base styles
+@import 'sass/base-rewrite';
+// Material raise shadows
+@import 'sass/shadows';
+// Custom enter animations
+@import 'sass/animations';
+// Angular Material theme
+//@import '~@angular/material/prebuilt-themes/indigo-pink.css';

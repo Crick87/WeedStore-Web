@@ -1,0 +1,6 @@
+MODIFIED:
+  variables/_palette.scss
+
+ADDED:
+
+DELETED:

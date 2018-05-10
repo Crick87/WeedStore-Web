@@ -1,0 +1,45 @@
+// Theme palette
+// Change these values to customise colour palettes
+
+$theme-colors: (
+  primary: (
+    color:   $material-color-green-600,
+    darker:  $material-color-green-800,
+    lighter: $material-color-green-100
+  ),
+  secondary: (
+    color:   $material-color-blue-grey-400,
+    darker:  $material-color-blue-grey-600,
+    lighter: $material-color-blue-grey-100
+  ),
+  danger: (
+    color:   $material-color-red-500,
+    darker:  $material-color-red-700,
+    lighter: $material-color-red-100
+  ),
+  info: (
+    color:   $material-color-light-blue-500,
+    darker:  $material-color-light-blue-700,
+    lighter: $material-color-light-blue-100
+  ),
+  success: (
+    color:   $material-color-light-green-500,
+    darker:  $material-color-light-green-700,
+    lighter: $material-color-light-green-100
+  ),
+  warning: (
+    color:   $material-color-orange-500,
+    darker:  $material-color-orange-700,
+    lighter: $material-color-orange-100
+  ),
+  dark: (
+    color:   $material-color-grey-800,
+    darker:  $material-color-grey-900,
+    lighter: $material-color-grey-600
+  ),
+  light: (
+    color:   $material-color-grey-100,
+    darker:  $material-color-grey-300,
+    lighter: $material-color-grey-050
+  )
+) !default;

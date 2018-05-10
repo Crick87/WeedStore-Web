@@ -1,0 +1,17 @@
+@keyframes slide-rigth {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+.slide-in {
+  animation-name: slide-rigth;
+  -webkit-animation-duration: .6s;
+  animation-duration: .6s;
+  //-webkit-animation-fill-mode: both;
+  //animation-fill-mode: both;
+}
