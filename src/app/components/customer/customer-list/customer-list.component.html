@@ -1,20 +1,20 @@
 <div id="fcmessaging-container" class="slide-in container pt-4 mb-5">
 
-  <div *ngFor="let customer of customers" class="card text-center mb-2">
-    <div class="card-body p-2">
-
-      <div class="row align-items-center">
-        <div class="col-2">
-          <img src="assets/images/icons/customer_round.png"
-          width="70" height="70" class="d-inline-block align-top" alt="">
-        </div>
-        <div id="cust-data" class="col-10 p-0 text-left">
-          <span>{{ customer.name }}</span><br>
-          <span class="text-muted">{{ customer.email }}</span>
+  <div *ngFor="let customer of customers">
+    <a [routerLink]="['/customer',customer.id]" class="card text-center mb-2">
+      <div class="card-body p-2">
+        <div class="row align-items-center">
+          <div class="col-2">
+            <img src="assets/images/icons/customer_round.png"
+            width="70" height="70" class="d-inline-block align-top" alt="">
+          </div>
+          <div id="cust-data" class="col-10 p-0 text-left">
+            <span>{{ customer.name }}</span><br>
+            <span class="text-muted">{{ customer.email }}</span>
+          </div>
         </div>
       </div>
-
-    </div>
+    </a>
   </div>
 
 </div>

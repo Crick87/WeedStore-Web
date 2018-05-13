@@ -16,13 +16,15 @@ import { AppComponent } from './app.component';
 import { FcmessagingComponent } from './components/fcmessaging/fcmessaging.component';
 import { TitlebarComponent } from './components/common/titlebar/titlebar.component';
 import { CustomerListComponent } from './components/customer/customer-list/customer-list.component';
+import { CustomerViewComponent } from './components/customer/customer-view/customer-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FcmessagingComponent,
     TitlebarComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerViewComponent
   ],
   imports: [
     BrowserModule,

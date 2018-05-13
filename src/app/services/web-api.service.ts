@@ -18,4 +18,11 @@ export class WebAPIService {
     )
   }
 
+  getCustomer( id:string ){
+    return this.http.get( this.customersURL+"/"+id )
+    .pipe(
+      map(res => res)
+    )
+  }
+
 }
