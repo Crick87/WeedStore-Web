@@ -1,0 +1,23 @@
+<div id="fcmessaging-container" class="slide-in container pt-4 mb-5">
+
+  <div *ngFor="let product of products">
+    <a [routerLink]="['/product',product.id]" class="card text-center mb-3 raise-1-4">
+      <div class="card-body p-2">
+        <div class="row align-items-center pl-1">
+          <div class="col-2">
+            <img src="assets/images/icons/product_round.png"
+            width="70" height="70" class="d-inline-block align-top" alt="">
+          </div>
+          <div id="cust-data" class="col-10 p-1 text-left">
+            <span>{{ product.name }}</span><br>
+            <span class="text-muted pr-5">{{ product.description }}</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="pb-5"></div>
+  <button [routerLink]="['/product','edit','nuevo']" class="fab-add btn btn-float btn-secondary my-1" type="button"><i class="material-icons">add</i></button>
+
+</div>

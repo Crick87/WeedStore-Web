@@ -1,0 +1,56 @@
+<div id="edit-customer-container" class="slide-in container pt-4 mb-5">
+
+  <div class="card text-center">
+    <div class="card-header">
+      <h2 class="text-center">
+        {{ title }}
+      </h2>
+    </div>
+    <div class="card-body">
+
+      <form [formGroup]="forma" (ngSubmit)="send()" (keyup.enter)="forma.valid && send()" novalidate>
+
+        <div class="form-group">
+          <div class="floating-label">
+            <label for="name">Nombre</label>
+            <input aria-describedby="name-help" class="form-control" id="name" placeholder="Nombre del producto" type="text"
+            formControlName="name">
+            <small id="name-help" class="form-text text-muted">Escribe el nombre del producto.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="floating-label">
+            <label for="description">Descripción</label>
+            <input aria-describedby="description-help" class="form-control" id="description" placeholder="Descripción del producto" type="text"
+            formControlName="description">
+            <small id="description-help" class="form-text text-muted">Escribe la descripción del producto.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="floating-label">
+            <label for="price">Precio</label>
+            <input aria-describedby="price-help" class="form-control" id="price" placeholder="Precio del producto" type="text"
+            formControlName="price">
+            <small id="price-help" class="form-text text-muted">Escribe el precio del producto.</small>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center col-12 m-0">
+          <button [disabled]="forma.invalid || resButton=='Guardando'" type="submit" class="btn btn-primary">
+            {{ resButton }}
+          </button>
+          <button (click)="deleteProduct()" *ngIf="productID != 'nuevo'" type="button" class="btn btn-danger ml-4">
+            Eliminar
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+
+</div>
