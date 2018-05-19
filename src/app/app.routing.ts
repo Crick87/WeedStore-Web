@@ -6,6 +6,8 @@ import { CustomerEditComponent } from './components/customer/customer-edit/custo
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductViewComponent } from './components/product/product-view/product-view.component';
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
+import { MapRouteListComponent } from './components/map-route/map-route-list/map-route-list.component';
+import { MapRouteViewComponent } from './components/map-route/map-route-view/map-route-view.component';
 
 const app_routes: Routes = [
   { path: 'customers', component: CustomerListComponent },
@@ -14,6 +16,8 @@ const app_routes: Routes = [
   { path: 'products', component: ProductListComponent },
   { path: 'product/:id', component: ProductViewComponent },
   { path: 'product/edit/:id', component: ProductEditComponent },
+  { path: 'routes/:id', component: MapRouteListComponent },
+  { path: 'routes/:id/:idRoute', component: MapRouteViewComponent },
   { path: 'push-notify', component: FcmessagingComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'customers' }
 ];

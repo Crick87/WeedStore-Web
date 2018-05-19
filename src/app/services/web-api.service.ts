@@ -11,6 +11,7 @@ export class WebAPIService {
   serverURL:string = "http://localhost:8080/ventas/api/"
   customersURL:string = this.serverURL+"customers"
   productsURL:string = this.serverURL+"products"
+  usersURL:string = this.serverURL+"users"
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -97,6 +98,17 @@ export class WebAPIService {
 
   deleteProduct( id:number ){
     return this.http.delete( this.productsURL+"/"+id )
+    .pipe(
+      map(res => res)
+    )
+  }
+
+  /////////////////
+  // Map Routes  //
+  /////////////////
+
+  getRoutes( id:string ){
+    return this.http.get( this.usersURL+"/routes/"+id )
     .pipe(
       map(res => res)
     )

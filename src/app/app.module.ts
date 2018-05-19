@@ -21,6 +21,8 @@ import { CustomerEditComponent } from './components/customer/customer-edit/custo
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductViewComponent } from './components/product/product-view/product-view.component';
+import { MapRouteListComponent } from './components/map-route/map-route-list/map-route-list.component';
+import { MapRouteViewComponent } from './components/map-route/map-route-view/map-route-view.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ProductViewComponent } from './components/product/product-view/product-
     CustomerEditComponent,
     ProductEditComponent,
     ProductListComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    MapRouteListComponent,
+    MapRouteViewComponent
   ],
   imports: [
     BrowserModule,

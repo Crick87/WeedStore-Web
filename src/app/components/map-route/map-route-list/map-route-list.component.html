@@ -1,0 +1,22 @@
+<div id="fcmessaging-container" class="slide-in container pt-4 mb-5">
+
+  <div *ngFor="let route of routesFixed">
+    <a [routerLink]="['/routes',userID,route.idRoute]" class="card text-center mb-3 raise-1-4">
+      <div class="card-body p-2">
+        <div class="row align-items-center">
+          <div class="col-2">
+            <img src="assets/images/icons/route_round.png"
+            width="70" height="70" class="d-inline-block align-top" alt="">
+          </div>
+          <div id="cust-data" class="col-10 p-0 text-left">
+            <span>Ruta {{ route.idRoute }}</span><br>
+            <span class="text-muted">{{ route.noItems }} clientes.</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="pb-5"></div>
+
+</div>
