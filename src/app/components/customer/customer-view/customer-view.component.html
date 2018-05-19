@@ -5,16 +5,19 @@
     <div class="bg-primary rounded">
       <img class="rounded-circle img-fluid img-profile border border-secondary" src="assets/images/icons/customer_profile.jpg" alt="">
     </div>
+    <div class="d-flex justify-content-end">
+      <button [routerLink]="['/customer','edit',customer?.id]" class="fab-add btn btn-float btn-secondary my-1" type="button"><i class="material-icons">edit</i></button>
+    </div>
 
     <div class="card-header">
       <h2 class="text-center">
         {{ customer?.name }}
       </h2>
     </div>
-    <div class="card-body">
-
-      {{ customer?.email }}
-
+    <div class="card-body customer-details">
+      <p><i class="fas fa-envelope"></i> {{ customer?.email }}</p>
+      <p><i class="fas fa-phone"></i> {{ customer?.phone }}</p>
+      <p><i class="fas fa-map-marker"></i> {{ customer?.latlong.x }}, {{ customer?.latlong.y }}</p>
     </div>
     <div class="card-footer text-muted">
     </div>

@@ -1,7 +1,7 @@
 <div id="fcmessaging-container" class="slide-in container pt-4 mb-5">
 
   <div *ngFor="let customer of customers">
-    <a [routerLink]="['/customer',customer.id]" class="card text-center mb-2">
+    <a [routerLink]="['/customer',customer.id]" class="card text-center mb-3 raise-1-4">
       <div class="card-body p-2">
         <div class="row align-items-center">
           <div class="col-2">
@@ -16,5 +16,8 @@
       </div>
     </a>
   </div>
+
+  <div class="pb-5"></div>
+  <button [routerLink]="['/customer','edit','nuevo']" class="fab-add btn btn-float btn-secondary my-1" type="button"><i class="material-icons">add</i></button>
 
 </div>

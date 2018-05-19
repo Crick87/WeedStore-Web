@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Fcmessage } from '../interfaces/fcmessage';
+import { Fcmessage } from '../interfaces/fcmessage.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

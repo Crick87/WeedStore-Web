@@ -17,6 +17,7 @@ import { FcmessagingComponent } from './components/fcmessaging/fcmessaging.compo
 import { TitlebarComponent } from './components/common/titlebar/titlebar.component';
 import { CustomerListComponent } from './components/customer/customer-list/customer-list.component';
 import { CustomerViewComponent } from './components/customer/customer-view/customer-view.component';
+import { CustomerEditComponent } from './components/customer/customer-edit/customer-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CustomerViewComponent } from './components/customer/customer-view/custo
     FcmessagingComponent,
     TitlebarComponent,
     CustomerListComponent,
-    CustomerViewComponent
+    CustomerViewComponent,
+    CustomerEditComponent
   ],
   imports: [
     BrowserModule,

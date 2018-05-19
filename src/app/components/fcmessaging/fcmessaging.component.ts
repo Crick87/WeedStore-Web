@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { FirebaseCMService } from '../../services/firebase-cm.service';
-import { Fcmessage } from '../../interfaces/fcmessage';
+import { Fcmessage } from '../../interfaces/fcmessage.interface';
 
 @Component({
   selector: 'app-fcmessaging',
