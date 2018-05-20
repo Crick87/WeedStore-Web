@@ -8,6 +8,9 @@ import { ProductViewComponent } from './components/product/product-view/product-
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 import { MapRouteListComponent } from './components/map-route/map-route-list/map-route-list.component';
 import { MapRouteViewComponent } from './components/map-route/map-route-view/map-route-view.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { OrderViewComponent } from './components/order/order-view/order-view.component';
+import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
 
 const app_routes: Routes = [
   { path: 'customers', component: CustomerListComponent },
@@ -16,6 +19,9 @@ const app_routes: Routes = [
   { path: 'products', component: ProductListComponent },
   { path: 'product/:id', component: ProductViewComponent },
   { path: 'product/edit/:id', component: ProductEditComponent },
+  { path: 'orders', component: OrderListComponent },
+  { path: 'order/:id', component: OrderViewComponent },
+  { path: 'order/edit/:id', component: OrderEditComponent },
   { path: 'routes/:id', component: MapRouteListComponent },
   { path: 'routes/:id/:idRoute', component: MapRouteViewComponent },
   { path: 'push-notify', component: FcmessagingComponent },

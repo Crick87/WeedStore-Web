@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, retry } from 'rxjs/operators';
 import { Customer } from '../interfaces/customer.interface';
 import { Product } from '../interfaces/product.interface';
+import { Order } from '../interfaces/order.interface';
 
 @Injectable()
 export class WebAPIService {
@@ -13,6 +14,7 @@ export class WebAPIService {
   customersURL:string = this.serverURL+"customers"
   productsURL:string = this.serverURL+"products"
   usersURL:string = this.serverURL+"users"
+  ordersURL:string = this.serverURL+"orders"
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -111,6 +113,47 @@ export class WebAPIService {
 
   getRoutes( id:string ){
     return this.http.get( this.usersURL+"/routes/"+id, this.httpOptions )
+    .pipe(
+      map(res => res)
+    )
+  }
+
+  /////////////
+  // Orders  //
+  /////////////
+
+  getOrders(){
+    return this.http.get( this.ordersURL, this.httpOptions )
+    .pipe(
+      map(res => res)
+    )
+  }
+
+  getOrder( id:string ){
+    return this.http.get( this.ordersURL+"/"+id, this.httpOptions )
+    .pipe(
+      map(res => res)
+    )
+  }
+
+  updateOrder( order:Order ){
+    let body:string = JSON.stringify(order)
+    return this.http.put( this.ordersURL, body, this.httpOptions )
+    .pipe(
+      map(res => res)
+    )
+  }
+
+  createOrder( order:Order ){
+    let body:string = JSON.stringify(order)
+    return this.http.post( this.ordersURL, body, this.httpOptions )
+    .pipe(
+      map(res => res)
+    )
+  }
+
+  deleteOrder( id:number ){
+    return this.http.delete( this.ordersURL+"/"+id, this.httpOptions )
     .pipe(
       map(res => res)
     )

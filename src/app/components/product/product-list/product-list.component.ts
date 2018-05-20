@@ -28,6 +28,17 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     // Scroll to top
     window.scrollTo(0, 0)
+    // Reload mainScripts
+    this.reloadScripts()
+  }
+
+  reloadScripts(){
+    // Reload mainScripts
+    document.getElementById("custom-js").remove();
+    var custom = document.createElement("script");
+    custom.setAttribute("id", "custom-js");
+    custom.setAttribute("src", "assets/local/custom.js");
+    document.body.appendChild(custom);
   }
 
 }
