@@ -9,13 +9,15 @@ import { Product } from '../interfaces/product.interface';
 export class WebAPIService {
 
   serverURL:string = "http://localhost:8080/ventas/api/"
+  token:string = ""
   customersURL:string = this.serverURL+"customers"
   productsURL:string = this.serverURL+"products"
   usersURL:string = this.serverURL+"users"
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  ['application/json']
+      'Content-Type':  ['application/json'],
+      'Authorization': 'Bearer %s'+this.token
     })
   }
 
@@ -26,14 +28,14 @@ export class WebAPIService {
   ////////////////
 
   getCustomers(){
-    return this.http.get( this.customersURL )
+    return this.http.get( this.customersURL, this.httpOptions )
     .pipe(
       map(res => res)
     )
   }
 
   getCustomer( id:string ){
-    return this.http.get( this.customersURL+"/"+id )
+    return this.http.get( this.customersURL+"/"+id, this.httpOptions )
     .pipe(
       map(res => res)
     )
@@ -56,7 +58,7 @@ export class WebAPIService {
   }
 
   deleteCustomer( id:number ){
-    return this.http.delete( this.customersURL+"/"+id )
+    return this.http.delete( this.customersURL+"/"+id, this.httpOptions )
     .pipe(
       map(res => res)
     )
@@ -67,14 +69,14 @@ export class WebAPIService {
   //////////////
 
   getProducts(){
-    return this.http.get( this.productsURL )
+    return this.http.get( this.productsURL, this.httpOptions )
     .pipe(
       map(res => res)
     )
   }
 
   getProduct( id:string ){
-    return this.http.get( this.productsURL+"/"+id )
+    return this.http.get( this.productsURL+"/"+id, this.httpOptions )
     .pipe(
       map(res => res)
     )
@@ -97,7 +99,7 @@ export class WebAPIService {
   }
 
   deleteProduct( id:number ){
-    return this.http.delete( this.productsURL+"/"+id )
+    return this.http.delete( this.productsURL+"/"+id, this.httpOptions )
     .pipe(
       map(res => res)
     )
@@ -108,7 +110,7 @@ export class WebAPIService {
   /////////////////
 
   getRoutes( id:string ){
-    return this.http.get( this.usersURL+"/routes/"+id )
+    return this.http.get( this.usersURL+"/routes/"+id, this.httpOptions )
     .pipe(
       map(res => res)
     )

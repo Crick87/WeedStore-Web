@@ -5,6 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Http
 import { HttpClientModule } from '@angular/common/http';
 
+// Mapas Angular
+import { AgmCoreModule } from '@agm/core';
+
 // Services
 import { FirebaseCMService } from './services/firebase-cm.service';
 import { WebAPIService } from './services/web-api.service';
@@ -43,7 +46,10 @@ import { MapRouteViewComponent } from './components/map-route/map-route-view/map
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    APP_ROUTING
+    APP_ROUTING,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDJQ9bVvMlvSIPRY_eZ3ADyMFCSJVsd10k'
+    })
   ],
   providers: [
     FirebaseCMService,
