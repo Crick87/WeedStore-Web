@@ -1,28 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { WebAPIService } from '../../../services/web-api.service';
+import { Order } from '../../../interfaces/order.interface';
 
 @Component({
-  selector: 'app-customer-list',
-  templateUrl: './customer-list.component.html',
-  styleUrls: ['./customer-list.component.scss']
+  selector: 'app-order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ['./order-list.component.scss']
 })
-export class CustomerListComponent implements OnInit {
+export class OrderListComponent implements OnInit {
 
-  customers=[]
+  orders=[]
 
   constructor(
     private webAPIService:WebAPIService
   ) {
 
-    this.webAPIService.getCustomers().subscribe(
+    this.webAPIService.getOrders().subscribe(
       (data:any)=>{
-        this.customers = data
+        this.orders = data
       },
       error =>{
         console.log(error)
       }
     )
 
+    this.webAPIService.getCustomers().subscribe(
+      (data:any)=>{
+        this.orders = this.matchOrders(this.orders, data)
+      },
+      error =>{
+        console.log(error)
+      }
+    )
+
+  }
+
+  matchOrders( orders:Order[], data:any[] ){
+    for (let order of orders) {
+      for (let customer of data){
+        if (customer.id == order.customerId)
+          order.customerName = customer.name
+      }
+    }
+    return orders
   }
 
   ngOnInit() {

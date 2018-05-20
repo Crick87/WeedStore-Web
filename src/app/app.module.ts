@@ -26,6 +26,9 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { ProductViewComponent } from './components/product/product-view/product-view.component';
 import { MapRouteListComponent } from './components/map-route/map-route-list/map-route-list.component';
 import { MapRouteViewComponent } from './components/map-route/map-route-view/map-route-view.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { OrderViewComponent } from './components/order/order-view/order-view.component';
+import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { MapRouteViewComponent } from './components/map-route/map-route-view/map
     ProductListComponent,
     ProductViewComponent,
     MapRouteListComponent,
-    MapRouteViewComponent
+    MapRouteViewComponent,
+    OrderListComponent,
+    OrderViewComponent,
+    OrderEditComponent
   ],
   imports: [
     BrowserModule,
