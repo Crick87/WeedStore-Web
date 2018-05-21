@@ -4,6 +4,6 @@ export interface Order {
   customerId:number,
   customerName?:string,
   status:boolean,
-  productList:Product,
+  productList:Product[],
   orderDate:any
 }

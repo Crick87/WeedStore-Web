@@ -1,3 +1,31 @@
-<p>
-  order-edit works!
-</p>
+<div id="edit-customer-container" class="slide-in container pt-4 mb-5">
+
+  <div class="card text-center">
+    <div class="card-header">
+      <h2 class="text-center">
+        {{ title }}
+      </h2>
+    </div>
+    <div class="card-body">
+
+      <form (ngSubmit)="send()" (keyup.enter)="forma.valid && send()" novalidate>
+
+        <!-- Forma -->
+
+        <div class="row d-flex justify-content-center col-12 m-0">
+          <button [disabled]="forma.invalid || resButton=='Guardando'" type="submit" class="btn btn-primary">
+            {{ resButton }}
+          </button>
+          <button (click)="deleteOrder()" *ngIf="orderID != 'nuevo'" type="button" class="btn btn-danger ml-4">
+            Eliminar
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+
+</div>

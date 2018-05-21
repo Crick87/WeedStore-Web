@@ -21,16 +21,16 @@ export class CustomerViewComponent implements OnInit {
 
     this.activatedRoute.params.subscribe( parametros=>{
        this.customerID=parametros['id']
-       if ( this.customerID != "nuevo" ){
-         this.webAPIService.getCustomer(this.customerID).subscribe(
-           (data:any)=>{
-             this.customer = data
-           },
-           error =>{
-             console.log(error)
-           }
-         )
-       }
+
+       this.webAPIService.getCustomer(this.customerID).subscribe(
+         (data:any)=>{
+           this.customer = data
+         },
+         error =>{
+           console.log(error)
+         }
+       )
+
      })
 
   }

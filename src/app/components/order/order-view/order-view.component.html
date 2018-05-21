@@ -1,3 +1,33 @@
-<p>
-  order-view works!
-</p>
+<div id="" class="slide-in container pt-4 mb-5">
+
+  <div class="card text-center">
+
+    <div class="bg-primary rounded">
+      <i class="icon-header fas fa-shopping-basket"></i>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button [routerLink]="['/order','edit',order?.id]" class="fab-add btn btn-float btn-secondary my-1" type="button"><i class="material-icons">edit</i></button>
+    </div>
+
+    <div class="card-header">
+      <h2 class="text-center">
+        Orden de cliente {{ order?.customerName }}
+      </h2>
+    </div>
+    <div class="card-body order-details">
+      <p><i class="fas fa-list-ol "></i> No. de orden: {{ order?.id }}</p>
+      <p><i class="fas fa-user-secret "></i> Cliente: {{ order?.id }} ( {{ order.customerName }} )</p>
+      <p><i class="fas fa-check-circle "></i>
+         Status:
+         <span *ngIf="order?.status == true">Completada</span>
+         <span *ngIf="order?.status == false">No completada</span>
+       </p>
+      <p><i class="fas fa-calendar-alt "></i> Fecha: {{ order?.orderDate.dayOfMonth }}/{{ order?.orderDate.monthValue }}/{{ order?.orderDate.year }}</p>
+      <p><i class="fas fa-shopping-basket "></i> Productos:</p>
+      <span *ngFor="let product of order?.productList; let j = index" class="chip m-1"> {{order?.productList[j].name }}</span>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+
+</div>
