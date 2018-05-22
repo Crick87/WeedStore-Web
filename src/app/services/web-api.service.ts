@@ -10,7 +10,8 @@ import { Order } from '../interfaces/order.interface';
 export class WebAPIService {
 
   serverURL:string = "http://localhost:8080/ventas/api/"
-  token:string = ""
+  //TODO: set a unhacked token on login
+  token:string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbGNyaXN0aWFuIiwiZXhwIjoxNTMxMTQzNzI1LCJ1c2VyaWQiOjF9.69yydCtwqC7hdhWrEIE4acAnDky_BL6_H53DC9SrWPo"
   customersURL:string = this.serverURL+"customers"
   productsURL:string = this.serverURL+"products"
   usersURL:string = this.serverURL+"users"
@@ -19,7 +20,7 @@ export class WebAPIService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  ['application/json'],
-      'Authorization': 'Bearer %s'+this.token
+      'Authorization': 'Bearer '+this.token
     })
   }
 

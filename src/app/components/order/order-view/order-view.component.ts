@@ -25,9 +25,16 @@ export class OrderViewComponent implements OnInit {
        this.webAPIService.getOrder(this.orderID).subscribe(
          (data:any)=>{
            this.order = data
-           console.log(data)
-         },
-         error =>{
+
+           this.webAPIService.getCustomer(this.order.customerId.toString()).subscribe(
+             (data:any)=>{
+               this.order.customerName = data.name
+             },error =>{
+               console.log(error)
+             }
+           )
+
+         },error =>{
            console.log(error)
          }
        )

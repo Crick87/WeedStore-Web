@@ -29,6 +29,7 @@ export class OrderEditComponent implements OnInit {
     this.webAPIService.getProducts().subscribe(
       (data:any)=>{
         this.products = data
+        console.log(this.products)
       },
       error =>{
         console.log(error)

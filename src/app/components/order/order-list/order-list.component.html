@@ -1,7 +1,7 @@
 <div id="orders-container" class="slide-in container pt-4 mb-5">
 
   <div *ngFor="let order of orders">
-    <a [routerLink]="['/order',order.id]" class="card text-center mb-3 raise-1-4">
+    <a [routerLink]="['/order',order.orderId]" class="card text-center mb-3 raise-1-4">
       <div class="card-body p-2">
         <div class="row align-items-center">
           <div class="col-2">

@@ -11,12 +11,12 @@
 
     <div class="card-header">
       <h2 class="text-center">
-        Orden de cliente {{ order?.customerName }}
+        Orden de {{ order?.customerName }}
       </h2>
     </div>
     <div class="card-body order-details">
-      <p><i class="fas fa-list-ol "></i> No. de orden: {{ order?.id }}</p>
-      <p><i class="fas fa-user-secret "></i> Cliente: {{ order?.id }} ( {{ order.customerName }} )</p>
+      <p><i class="fas fa-list-ol "></i> No. de orden: {{ order?.orderId }}</p>
+      <p><i class="fas fa-user-secret "></i> Cliente: {{ order?.customerId }} ( {{ order?.customerName }} )</p>
       <p><i class="fas fa-check-circle "></i>
          Status:
          <span *ngIf="order?.status == true">Completada</span>
