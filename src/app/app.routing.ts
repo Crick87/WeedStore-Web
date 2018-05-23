@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 import { FcmessagingComponent } from './components/fcmessaging/fcmessaging.component';
 import { CustomerListComponent } from './components/customer/customer-list/customer-list.component';
 import { CustomerViewComponent } from './components/customer/customer-view/customer-view.component';
@@ -13,6 +14,7 @@ import { OrderViewComponent } from './components/order/order-view/order-view.com
 import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
 
 const app_routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'customers', component: CustomerListComponent },
   { path: 'customer/:id', component: CustomerViewComponent },
   { path: 'customer/edit/:id', component: CustomerEditComponent },
@@ -25,7 +27,7 @@ const app_routes: Routes = [
   { path: 'routes/:id', component: MapRouteListComponent },
   { path: 'routes/:id/:idRoute', component: MapRouteViewComponent },
   { path: 'push-notify', component: FcmessagingComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'customers' }
+  { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(app_routes);

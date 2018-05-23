@@ -29,6 +29,7 @@ import { MapRouteViewComponent } from './components/map-route/map-route-view/map
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderViewComponent } from './components/order/order-view/order-view.component';
 import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { OrderEditComponent } from './components/order/order-edit/order-edit.com
     MapRouteViewComponent,
     OrderListComponent,
     OrderViewComponent,
-    OrderEditComponent
+    OrderEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

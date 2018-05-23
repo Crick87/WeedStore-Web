@@ -1,0 +1,37 @@
+<div class="container-fluid d-flex justify-content-center">
+  <div class="card text-primary border-primary mt-5 mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title text-center">Iniciar sesión</h5>
+
+      <form>
+        <div class="form-group">
+          <label for="email">Correo</label>
+          <input
+            [(ngModel)]="email"
+            name="email"
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            placeholder="Escribe tu correo">
+          <small id="emailHelp" class="form-text text-muted">No usaremos tu email para fines malvados.</small>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input
+            [(ngModel)]="password"
+            name="password"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Ahora tu contraseña">
+        </div>
+        <div class="text-center">
+          <button (click)="login()" type="button" class="btn btn-secondary my-4">Login</button>
+        </div>
+      </form>
+
+      <p class="card-text">Bienvenido a la tienda de botánica más divertida del barrio!.</p>
+    </div>
+  </div>
+</div>

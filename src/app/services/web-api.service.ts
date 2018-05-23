@@ -11,20 +11,48 @@ export class WebAPIService {
 
   serverURL:string = "http://localhost:8080/ventas/api/"
   //TODO: set a unhacked token on login
-  token:string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlbGNyaXN0aWFuIiwiZXhwIjoxNTMxMTQzNzI1LCJ1c2VyaWQiOjF9.69yydCtwqC7hdhWrEIE4acAnDky_BL6_H53DC9SrWPo"
+  token:string = ""
   customersURL:string = this.serverURL+"customers"
   productsURL:string = this.serverURL+"products"
   usersURL:string = this.serverURL+"users"
   ordersURL:string = this.serverURL+"orders"
+  httpOptions:any
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  ['application/json'],
-      'Authorization': 'Bearer '+this.token
-    })
+  constructor( private http:HttpClient ) {
+
+    if( localStorage.getItem('lastUser') ){
+      var user = JSON.parse(localStorage.getItem('lastUser'))
+      this.token = user.token
+
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  ['application/json'],
+          'Authorization': 'Bearer '+this.token
+        })
+      }
+    }
+
   }
 
-  constructor( private http:HttpClient ) { }
+  //////////
+  // User //
+  //////////
+
+  login( loginRequest:any ){
+    let body:string = JSON.stringify(loginRequest)
+    return this.http.post( this.serverURL+"login", body, this.httpOptions )
+    .pipe(
+      map(res => res)
+    )
+  }
+
+  testUser( user:any ){
+    let body:string = JSON.stringify(user)
+    return this.http.post( this.serverURL+"test", body, this.httpOptions )
+    .pipe(
+      map(res => res)
+    )
+  }
 
   ////////////////
   // Customers  //
