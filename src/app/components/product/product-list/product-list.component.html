@@ -18,6 +18,6 @@
   </div>
 
   <div class="pb-5"></div>
-  <button [routerLink]="['/product','edit','nuevo']" class="fab-add btn btn-float btn-secondary my-1" type="button"><i class="material-icons">add</i></button>
+  <button *ngIf="admin" [routerLink]="['/product','edit','nuevo']" class="fab-add btn btn-float btn-secondary my-1" type="button"><i class="material-icons">add</i></button>
 
 </div>

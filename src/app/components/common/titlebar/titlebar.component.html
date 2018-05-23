@@ -8,7 +8,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul *ngIf="route != '/login'" class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="customers">Clientes</a>
       </li>
@@ -21,7 +21,7 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/routes',userID]" >Rutas</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="admin" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="push-notify" >FCM</a>
       </li>
       <!-- <li class="nav-item dropdown">
@@ -36,8 +36,8 @@
         </div>
       </li> -->
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
+    <ul  class="navbar-nav ml-auto">
+      <li *ngIf="route != '/login'" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Opciones
         </a>

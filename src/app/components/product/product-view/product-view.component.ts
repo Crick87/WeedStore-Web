@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WebAPIService } from '../../../services/web-api.service';
 import { Product } from '../../../interfaces/product.interface';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'app-product-view',
@@ -10,6 +11,7 @@ import { Product } from '../../../interfaces/product.interface';
 })
 export class ProductViewComponent implements OnInit {
 
+  admin = Config.admin
   productID:string
   product:Product
 

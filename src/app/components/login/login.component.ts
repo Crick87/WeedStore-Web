@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebAPIService } from '../../services/web-api.service';
 import { Router } from '@angular/router';
 import { User } from '../../interfaces/user.interface';
+import { Config } from "../../config";
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,7 @@ export class LoginComponent implements OnInit {
     this.getLastUser()
     this.webAPIService.testUser(this.user).subscribe(
       (data:any)=>{
-        this.activeGuard()
-        this.router.navigate(['/customers'])
+        this.activeGuard( data )
       },
       error =>{
         //console.log(error)
@@ -44,8 +44,7 @@ export class LoginComponent implements OnInit {
       (data:any)=>{
         this.user = data
         localStorage.setItem('lastUser', JSON.stringify(this.user))
-        this.activeGuard()
-        this.router.navigate(['/customers'])
+        this.activeGuard( data )
       },
       error =>{
         console.log(error)
@@ -59,8 +58,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  activeGuard(){
-    //TODO: activate guard
+  activeGuard( user ){
+    Config.auth = true
+    Config.admin = user.admin
+    this.router.navigate(['/customers'])
   }
 
 }

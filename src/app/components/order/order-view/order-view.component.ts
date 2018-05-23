@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WebAPIService } from '../../../services/web-api.service';
 import { Order } from '../../../interfaces/order.interface';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'app-order-view',
@@ -10,6 +11,7 @@ import { Order } from '../../../interfaces/order.interface';
 })
 export class OrderViewComponent implements OnInit {
 
+  admin = Config.admin
   orderID:string
   order:Order
 

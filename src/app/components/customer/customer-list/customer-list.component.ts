@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebAPIService } from '../../../services/web-api.service';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'app-customer-list',
@@ -8,7 +9,8 @@ import { WebAPIService } from '../../../services/web-api.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customers=[]
+  admin = Config.admin
+  customers = []
 
   constructor(
     private webAPIService:WebAPIService

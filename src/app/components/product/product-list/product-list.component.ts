@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebAPIService } from '../../../services/web-api.service';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'app-product-list',
@@ -8,6 +9,7 @@ import { WebAPIService } from '../../../services/web-api.service';
 })
 export class ProductListComponent implements OnInit {
 
+  admin = Config.admin
   products=[]
 
   constructor(

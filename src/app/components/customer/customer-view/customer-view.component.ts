@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WebAPIService } from '../../../services/web-api.service';
 import { Customer } from '../../../interfaces/customer.interface';
+import { Config } from '../../../config';
 
 @Component({
   selector: 'app-customer-view',
@@ -10,6 +11,7 @@ import { Customer } from '../../../interfaces/customer.interface';
 })
 export class CustomerViewComponent implements OnInit {
 
+  admin = Config.admin
   customerID:string
   customer:Customer
 
