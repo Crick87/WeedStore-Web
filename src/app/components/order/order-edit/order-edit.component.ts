@@ -15,9 +15,11 @@ export class OrderEditComponent implements OnInit {
   orderID:string
   order:any
   orderStatus:boolean
+  orderEmployeeID:number
   products:Product[]
   customers=[]
   customerID:number
+  userID:number
   forma:FormGroup
   resButton:string = "Guardar"
   title:string = "Crear orden"
@@ -27,6 +29,11 @@ export class OrderEditComponent implements OnInit {
     private router:Router,
     private activatedRoute:ActivatedRoute
   ) {
+
+    if( localStorage.getItem('lastUser') ){
+      var user = JSON.parse(localStorage.getItem('lastUser'))
+      this.userID = user.id
+    }
 
     this.webAPIService.getProducts().subscribe(
       (data:any)=>{
@@ -57,6 +64,7 @@ export class OrderEditComponent implements OnInit {
 
              this.customerID = data.customerId
              this.orderStatus = data.status
+             this.orderEmployeeID = data.employeeId
              this.setQuantity(data)
 
              this.webAPIService.getCustomer(this.customerID.toString()).subscribe(
@@ -173,14 +181,15 @@ export class OrderEditComponent implements OnInit {
       orderId:0,
       status:false,
       customerId:this.customerID,
+      employeeId:0,
       productList:basket
     }
 
     if( this.orderID == "nuevo"){
+      this.order.employeeId = this.userID
       this.webAPIService.createOrder(this.order).subscribe(
         (data:any)=>{
           this.resButton = "Guardar"
-
           //TODO: Guardado con exito
           console.log("Orden creada")
           this.router.navigate(['/orders'])
@@ -195,6 +204,7 @@ export class OrderEditComponent implements OnInit {
       this.order.customerId=this.customerID
       this.order.status=this.orderStatus
       this.order.orderId=this.orderID
+      this.order.employeeId=this.orderEmployeeID
 
       this.webAPIService.updateOrder(this.order).subscribe(
         (data:any)=>{
