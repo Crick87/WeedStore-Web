@@ -14,6 +14,7 @@ export class OrderEditComponent implements OnInit {
 
   orderID:string
   order:any
+  orderStatus:boolean
   products:Product[]
   customers=[]
   customerID:number
@@ -53,7 +54,19 @@ export class OrderEditComponent implements OnInit {
          this.webAPIService.getOrder(this.orderID).subscribe(
            (data:any)=>{
              this.order = data
-             this.title = "Editar orden de "+this.order.customerName
+
+             this.customerID = data.customerId
+             this.orderStatus = data.status
+             this.setQuantity(data)
+
+             this.webAPIService.getCustomer(this.customerID.toString()).subscribe(
+               (data:any)=>{
+                 this.title = "Editar orden de "+data.name
+               },error =>{
+                 console.log(error)
+               }
+             )
+
            },
            error =>{
              console.log(error)
@@ -98,6 +111,18 @@ export class OrderEditComponent implements OnInit {
       this.formProducts.controls[item].get('quantity').setValue(
         value +1
       )
+  }
+
+  setQuantity( basket:any ){
+    for (var i=0; i<basket.productList.length; i++){
+      for (var j=0; j<this.products.length; j++){
+        if ( this.products[j].id == basket.productList[i].id ){
+          this.formProducts.controls[j].get('quantity').setValue(
+            basket.productList[i].quantity
+          )
+        }
+      }
+    }
   }
 
   fillProductForm( items:any ){
@@ -145,6 +170,8 @@ export class OrderEditComponent implements OnInit {
       }
     }
     this.order = {
+      orderId:0,
+      status:false,
       customerId:this.customerID,
       productList:basket
     }
@@ -165,20 +192,24 @@ export class OrderEditComponent implements OnInit {
         }
       )
     }else{
-      // this.webAPIService.updateCustomer(customer).subscribe(
-      //   (data:any)=>{
-      //     //console.log(data)
-      //     this.resButton = "Guardar"
-      //     //TODO: Actualizado con exito
-      //     console.log("Cliente actualizado")
-      //     this.router.navigate(['/customer', data.id])
-      //   },
-      //   error =>{
-      //     console.log(error)
-      //     this.resButton = "Guardar"
-      //     //TODO: Error al actualizar
-      //   }
-      // )
+      this.order.customerId=this.customerID
+      this.order.status=this.orderStatus
+      this.order.orderId=this.orderID
+
+      this.webAPIService.updateOrder(this.order).subscribe(
+        (data:any)=>{
+          //console.log(data)
+          this.resButton = "Guardar"
+          //TODO: Actualizado con exito
+          console.log("Orden actualizada")
+          this.router.navigate(['/order', this.orderID])
+        },
+        error =>{
+          console.log(error)
+          this.resButton = "Guardar"
+          //TODO: Error al actualizar
+        }
+      )
     }
   }
 

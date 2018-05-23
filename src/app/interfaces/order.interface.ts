@@ -1,6 +1,6 @@
 import { Product } from './product.interface';
 export interface Order {
-  id:number,
+  orderId:number,
   customerId:number,
   customerName?:string,
   status:boolean,
