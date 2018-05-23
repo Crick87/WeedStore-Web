@@ -13,9 +13,10 @@ import { Product } from '../../../interfaces/product.interface';
 export class OrderEditComponent implements OnInit {
 
   orderID:string
-  order:Order
+  order:any
   products:Product[]
-  productsBasket:any
+  customers=[]
+  customerID:number
   forma:FormGroup
   resButton:string = "Guardar"
   title:string = "Crear orden"
@@ -29,7 +30,17 @@ export class OrderEditComponent implements OnInit {
     this.webAPIService.getProducts().subscribe(
       (data:any)=>{
         this.products = data
-        console.log(this.products)
+        this.fillProductForm(data)
+        this.forma.setValue({ productList:this.products })
+      },
+      error =>{
+        console.log(error)
+      }
+    )
+
+    this.webAPIService.getCustomers().subscribe(
+      (data:any)=>{
+        this.customers = data
       },
       error =>{
         console.log(error)
@@ -42,7 +53,6 @@ export class OrderEditComponent implements OnInit {
          this.webAPIService.getOrder(this.orderID).subscribe(
            (data:any)=>{
              this.order = data
-             //TODO: set values to forma
              this.title = "Editar orden de "+this.order.customerName
            },
            error =>{
@@ -55,9 +65,57 @@ export class OrderEditComponent implements OnInit {
      })
 
      this.forma = new FormGroup({
-       //
+      'productList' : new FormArray([
+        new FormGroup(
+          {
+            'id': new FormControl('', [ Validators.required ]),
+            'name': new FormControl('', [ Validators.required ]),
+            'description': new FormControl('', [ Validators.required ]),
+            'price': new FormControl('', [ Validators.required ]),
+            'stock': new FormControl('', [ Validators.required ]),
+            'image': new FormControl(''),
+            'quantity': new FormControl('', [ Validators.required ])
+          }
+        )
+      ])
      })
 
+  }
+
+  get formProducts():FormArray { return <FormArray>this.forma.get('productList'); }
+
+  lessQuantity( item:number ){
+    var value = this.formProducts.controls[item].get('quantity').value;
+    if( value > 0 )
+      this.formProducts.controls[item].get('quantity').setValue(
+        value -1
+      )
+  }
+
+  moreQuantity( item:number ){
+    var value = this.formProducts.controls[item].get('quantity').value;
+    if( value < this.products[item].stock )
+      this.formProducts.controls[item].get('quantity').setValue(
+        value +1
+      )
+  }
+
+  fillProductForm( items:any ){
+    for (var i=0; i<items.length-1; i++){
+      (<FormArray>this.forma.controls['productList']).push(
+        new FormGroup(
+          {
+            'id': new FormControl('', [ Validators.required ]),
+            'name': new FormControl('', [ Validators.required ]),
+            'description': new FormControl('', [ Validators.required ]),
+            'price': new FormControl('', [ Validators.required ]),
+            'stock': new FormControl('', [ Validators.required ]),
+            'image': new FormControl(''),
+            'quantity': new FormControl('', [ Validators.required ])
+          }
+        )
+      )
+    }
   }
 
   ngOnInit() {
@@ -77,45 +135,51 @@ export class OrderEditComponent implements OnInit {
   }
 
   send(){
-    console.log("Push push push")
-    // this.resButton = "Guardando"
-    //
-    // var customer:Customer = this.customer
-    // customer.name = this.forma.controls.name.value
-    // customer.email = this.forma.controls.email.value
-    // customer.phone = this.forma.controls.phone.value
-    //
-    // if( this.customerID == "nuevo"){
-    //   this.webAPIService.createCustomer(customer).subscribe(
-    //     (data:any)=>{
-    //       this.resButton = "Guardar"
-    //
-    //       //TODO: Guardado con exito
-    //       console.log("Cliente creado")
-    //       this.router.navigate(['/customers'])
-    //     },
-    //     error =>{
-    //       console.log(error)
-    //       this.resButton = "Guardar"
-    //       //TODO: Error al guardar
-    //     }
-    //   )
-    // }else{
-    //   this.webAPIService.updateCustomer(customer).subscribe(
-    //     (data:any)=>{
-    //       //console.log(data)
-    //       this.resButton = "Guardar"
-    //       //TODO: Actualizado con exito
-    //       console.log("Cliente actualizado")
-    //       this.router.navigate(['/customer', data.id])
-    //     },
-    //     error =>{
-    //       console.log(error)
-    //       this.resButton = "Guardar"
-    //       //TODO: Error al actualizar
-    //     }
-    //   )
-    // }
+    this.resButton = "Guardando"
+
+    var productListForm = this.formProducts.value;
+    var basket = []
+    for (var i=0; i<productListForm.length; i++){
+      if ( productListForm[i].quantity !== 0 ){
+        basket.push(productListForm[i])
+      }
+    }
+    this.order = {
+      customerId:this.customerID,
+      productList:basket
+    }
+
+    if( this.orderID == "nuevo"){
+      this.webAPIService.createOrder(this.order).subscribe(
+        (data:any)=>{
+          this.resButton = "Guardar"
+
+          //TODO: Guardado con exito
+          console.log("Orden creada")
+          this.router.navigate(['/orders'])
+        },
+        error =>{
+          console.log(error)
+          this.resButton = "Guardar"
+          //TODO: Error al guardar
+        }
+      )
+    }else{
+      // this.webAPIService.updateCustomer(customer).subscribe(
+      //   (data:any)=>{
+      //     //console.log(data)
+      //     this.resButton = "Guardar"
+      //     //TODO: Actualizado con exito
+      //     console.log("Cliente actualizado")
+      //     this.router.navigate(['/customer', data.id])
+      //   },
+      //   error =>{
+      //     console.log(error)
+      //     this.resButton = "Guardar"
+      //     //TODO: Error al actualizar
+      //   }
+      // )
+    }
   }
 
   deleteOrder(){

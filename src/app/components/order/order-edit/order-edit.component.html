@@ -8,12 +8,50 @@
     </div>
     <div class="card-body">
 
-      <form (ngSubmit)="send()" (keyup.enter)="forma.valid && send()" novalidate>
+      <div class="text-left form-group mb-4">
+        <label for="customer">Cliente</label>
+        <select [(ngModel)]="customerID" class="form-control" id="customer">
+          <option *ngFor="let cust of customers" [ngValue]="cust.id">
+            {{ cust.name }}
+          </option>
+        </select>
+      </div>
 
-        <!-- Forma -->
+      <form [formGroup]="forma" (ngSubmit)="send()" (keyup.enter)="forma.valid && send()" novalidate>
+
+        <div formArrayName="productList">
+
+          <table *ngIf="products?.length > 0" class="table">
+            <thead>
+              <tr>
+                <th scope="col">PRODUCTO</th>
+                <th scope="col">PRECIO</th>
+                <th scope="col">STOCK</th>
+                <th scope="col">CANTIDAD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prod of formProducts.controls; index as i"
+              [formGroupName]="i">
+                <th scope="row">{{ products[i].name }}</th>
+                <td>${{ products[i].price }}</td>
+                <td>{{ products[i].stock }}</td>
+                <td>
+                  <div class="form-group m-0">
+                    <button (click)="lessQuantity(i)" class="btn btn-float xxsm raise-0-1" type="button"><i class="icon-xxsm material-icons">remove</i></button>
+                    {{ formProducts.controls[i].controls.quantity.value }}
+                    <button (click)="moreQuantity(i)" class="btn btn-float xxsm raise-0-1" type="button"><i class="icon-xxsm material-icons">add</i></button>
+                    <input formControlName="quantity" class="hidden form-control p-0" type="number">
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
 
         <div class="row d-flex justify-content-center col-12 m-0">
-          <button [disabled]="forma.invalid || resButton=='Guardando'" type="submit" class="btn btn-primary">
+          <button [disabled]="(forma.invalid || customerID == undefined) || resButton=='Guardando'" type="submit" class="btn btn-primary">
             {{ resButton }}
           </button>
           <button (click)="deleteOrder()" *ngIf="orderID != 'nuevo'" type="button" class="btn btn-danger ml-4">
