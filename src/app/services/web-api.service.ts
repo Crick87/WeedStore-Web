@@ -181,7 +181,7 @@ export class WebAPIService {
     )
   }
 
-  deleteOrder( id:number ){
+  deleteOrder( id:string ){
     return this.http.delete( this.ordersURL+"/"+id, this.httpOptions )
     .pipe(
       map(res => res)

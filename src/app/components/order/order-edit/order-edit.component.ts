@@ -187,6 +187,7 @@ export class OrderEditComponent implements OnInit {
       this.order.employeeId = this.userID
       this.webAPIService.createOrder(this.order).subscribe(
         (data:any)=>{
+          console.log(data)
           this.resButton = "Guardar"
           //TODO: Guardado con exito
           console.log("Orden creada")
@@ -222,7 +223,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   deleteOrder(){
-    this.webAPIService.deleteOrder(this.order.id).subscribe(
+    this.webAPIService.deleteOrder( this.orderID ).subscribe(
       (data:any)=>{
         //TODO: Eliminado con exito
         console.log("Orden eliminada")
