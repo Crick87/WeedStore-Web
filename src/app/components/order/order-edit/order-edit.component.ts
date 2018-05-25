@@ -94,7 +94,6 @@ export class OrderEditComponent implements OnInit {
             'description': new FormControl('', [ Validators.required ]),
             'price': new FormControl('', [ Validators.required ]),
             'stock': new FormControl('', [ Validators.required ]),
-            'image': new FormControl(''),
             'quantity': new FormControl('', [ Validators.required ])
           }
         )
@@ -143,7 +142,6 @@ export class OrderEditComponent implements OnInit {
             'description': new FormControl('', [ Validators.required ]),
             'price': new FormControl('', [ Validators.required ]),
             'stock': new FormControl('', [ Validators.required ]),
-            'image': new FormControl(''),
             'quantity': new FormControl('', [ Validators.required ])
           }
         )

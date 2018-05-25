@@ -167,7 +167,6 @@ export class WebAPIService {
 
   updateOrder( order:Order ){
     let body:string = JSON.stringify(order)
-    console.log(body)
     return this.http.put( this.ordersURL, body, this.httpOptions )
     .pipe(
       map(res => res)
