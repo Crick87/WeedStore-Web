@@ -40,6 +40,36 @@ export class OrderEditComponent implements OnInit {
         this.products = data
         this.fillProductForm(data)
         this.forma.setValue({ productList:this.products })
+
+        this.activatedRoute.params.subscribe( parametros=>{
+           this.orderID=parametros['id']
+           if ( this.orderID != "nuevo" ){
+             this.webAPIService.getOrder(this.orderID).subscribe(
+               (data:any)=>{
+                 this.order = data
+
+                 this.customerID = data.customerId
+                 this.orderStatus = data.status
+                 this.orderEmployeeID = data.employeeId
+                 this.setQuantity(data)
+
+                 this.webAPIService.getCustomer(this.customerID.toString()).subscribe(
+                   (data:any)=>{
+                     this.title = "Editar orden de "+data.name
+                   },error =>{
+                     console.log(error)
+                   }
+                 )
+
+               },
+               error =>{
+                 console.log(error)
+               }
+             )
+           }
+         })
+
+
       },
       error =>{
         console.log(error)
@@ -54,36 +84,6 @@ export class OrderEditComponent implements OnInit {
         console.log(error)
       }
     )
-
-    this.activatedRoute.params.subscribe( parametros=>{
-       this.orderID=parametros['id']
-       if ( this.orderID != "nuevo" ){
-         this.webAPIService.getOrder(this.orderID).subscribe(
-           (data:any)=>{
-             this.order = data
-
-             this.customerID = data.customerId
-             this.orderStatus = data.status
-             this.orderEmployeeID = data.employeeId
-             this.setQuantity(data)
-
-             this.webAPIService.getCustomer(this.customerID.toString()).subscribe(
-               (data:any)=>{
-                 this.title = "Editar orden de "+data.name
-               },error =>{
-                 console.log(error)
-               }
-             )
-
-           },
-           error =>{
-             console.log(error)
-           }
-         )
-       }else{
-         //TODO: New order = ... ?
-       }
-     })
 
      this.forma = new FormGroup({
       'productList' : new FormArray([

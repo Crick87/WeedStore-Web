@@ -18,15 +18,16 @@ export class OrderListComponent implements OnInit {
     this.webAPIService.getOrders().subscribe(
       (data:any)=>{
         this.orders = data
-      },
-      error =>{
-        console.log(error)
-      }
-    )
 
-    this.webAPIService.getCustomers().subscribe(
-      (data:any)=>{
-        this.orders = this.matchOrders(this.orders, data)
+        this.webAPIService.getCustomers().subscribe(
+          (customersData:any)=>{
+            this.orders = this.matchOrders(this.orders, customersData)
+          },
+          error =>{
+            console.log(error)
+          }
+        )
+
       },
       error =>{
         console.log(error)
