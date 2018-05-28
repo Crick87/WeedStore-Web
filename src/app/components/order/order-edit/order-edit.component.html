@@ -8,6 +8,17 @@
     </div>
     <div class="card-body">
 
+      <form class="was-validated mb-3">
+        <div class="custom-control custom-switch text-left">
+          <input class="custom-control-input" id="status" required type="checkbox"
+          [checked]="orderStatus" (change)="orderStatus = !orderStatus" >
+          <span class="custom-control-track"></span>
+          <label class="custom-control-label" for="status">Status</label>
+          <div class="invalid-feedback">No completado</div>
+          <div class="valid-feedback">Completado</div>
+        </div>
+      </form>
+
       <div class="text-left form-group mb-4">
         <label for="customer">Cliente</label>
         <select [(ngModel)]="customerID" class="form-control" id="customer">

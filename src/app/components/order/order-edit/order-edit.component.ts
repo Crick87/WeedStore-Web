@@ -185,6 +185,7 @@ export class OrderEditComponent implements OnInit {
 
     if( this.orderID == "nuevo"){
       this.order.employeeId = this.userID
+      this.order.status=this.orderStatus
       this.webAPIService.createOrder(this.order).subscribe(
         (data:any)=>{
           console.log(data)
